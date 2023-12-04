@@ -41,22 +41,24 @@ export const detail = async (req: Request, res: Response) => {
       status: "active",
       deleted: false,
     });
+    if(song){
+       const singer = await Singer.findOne({
+         _id: song.singerId,
+         status: "active",
+         deleted: false,
+       }).select("fullName");
 
-    const singer = await Singer.findOne({
-      _id: song.singerId,
-      status: "active",
-      deleted: false,
-    }).select("fullName");
-
-    const topic = await Topic.findOne({
-      _id: song.topicId,
-    }).select("title");
-    res.render("client/pages/songs/detail", {
-      pageTitle: song.title,
-      song: song,
-      singer: singer,
-      topic : topic
-    });
+       const topic = await Topic.findOne({
+         _id: song.topicId,
+       }).select("title");
+       res.render("client/pages/songs/detail", {
+         pageTitle: song.title,
+         song: song,
+         singer: singer,
+         topic: topic,
+       });
+    }
+   
   } catch (error) {
     console.log(error);
   }
