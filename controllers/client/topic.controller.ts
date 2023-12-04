@@ -4,10 +4,11 @@ import Topic from "../../models/topic.model";
 // [GET] /topics
 export const topics = async (req: Request, res: Response) => {
    const topics = await Topic.find({
+    status:"active",
      deleted: false,
    });
-   console.log(topics);
    res.render("client/pages/topics/index",{
-    pageTitle : "Danh sách topic"
+    pageTitle : "Danh sách topic",
+    topics :topics
    });
 };
