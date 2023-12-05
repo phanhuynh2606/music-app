@@ -8,9 +8,9 @@ if (aplayer) {
   dataSinger = JSON.parse(dataSinger);
   const ap = new APlayer({
     container: aplayer,
-    listFolded: false,
-    listMaxHeight: 90,
-    lrcType: 3,
+    // listFolded: false,
+    // listMaxHeight: 90,
+    // lrcType: 3,
     //  fixed: true,
     audio: [
       {
@@ -27,24 +27,46 @@ if (aplayer) {
         cover: "https://avatar-ex-swe.nixcdn.com/song/2023/07/31/7/9/9/a/1690808322047_500.jpg",
         theme: "#ebd0c2",
       },
-      {
-        name: "前前前世",
-        artist: "RADWIMPS",
-        url: "https://cn-south-17-aplayer-46154810.oss.dogecdn.com/yourname.mp3",
-        cover: "https://cn-south-17-aplayer-46154810.oss.dogecdn.com/yourname.jpg",
-        theme: "#505d6b",
-      },
     ],
     autoplay: true,
     volume: 0.8,
   });
   const elementAvatar = document.querySelector(".song-detail .inner-avatar");
-  ap.on('play', function() {
-	elementAvatar.style.animationPlayState = "running";
+  ap.on("play", function () {
+    elementAvatar.style.animationPlayState = "running";
   });
-  ap.on('pause', function() {
-	elementAvatar.style.animationPlayState = "paused";
+  ap.on("pause", function () {
+    elementAvatar.style.animationPlayState = "paused";
   });
 }
 
 // End APlayer
+
+// Button Like
+const buttonLike = document.querySelector("[button-like]");
+if (buttonLike) {
+  buttonLike.addEventListener("click", () => {
+    const idSong = buttonLike.getAttribute("button-like");
+
+    const isActive = buttonLike.classList.contains("active");
+    const typeLike = isActive ? "dislike" : "like";
+
+    const link = `/songs/like/${typeLike}/${idSong}`;
+
+    const options = {
+      method : "PATCH"
+    };
+
+    fetch(link,options)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data && data.code == 200) {
+          const span = buttonLike.querySelector("span");
+          span.innerHTML = `${data.like} thích`;
+          buttonLike.classList.toggle("active");
+        }
+      });
+  });
+}
+// End Button Like
