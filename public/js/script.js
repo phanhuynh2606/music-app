@@ -20,13 +20,13 @@ if (aplayer) {
         cover: dataSong.avatar,
         theme: "#ebd0c2",
       },
-      {
-        name: "id 072019 ",
-        artist: "W/n",
-        url: "https://backend.daca.vn/assets/audios/cat-doi-noi-sau.mp3",
-        cover: "https://avatar-ex-swe.nixcdn.com/song/2023/07/31/7/9/9/a/1690808322047_500.jpg",
-        theme: "#ebd0c2",
-      },
+      // {
+      //   name: "id 072019 ",
+      //   artist: "W/n",
+      //   url: "https://backend.daca.vn/assets/audios/cat-doi-noi-sau.mp3",
+      //   cover: "https://avatar-ex-swe.nixcdn.com/song/2023/07/31/7/9/9/a/1690808322047_500.jpg",
+      //   theme: "#ebd0c2",
+      // },
     ],
     autoplay: true,
     volume: 0.8,
@@ -37,6 +37,24 @@ if (aplayer) {
   });
   ap.on("pause", function () {
     elementAvatar.style.animationPlayState = "paused";
+  });
+
+  ap.on('ended', function () {
+    const link = `/songs/listen/${dataSong._id}`;
+
+    const options = {
+      method: "PATCH",
+    };
+
+    fetch(link, options)
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        if (data && data.code == 200) {
+          const span = document.querySelector(".inner-listen span");
+          span.innerHTML = `${data.listen} lượt nghe`;
+        }
+      });
   });
 }
 
@@ -60,7 +78,7 @@ if (buttonLike) {
     fetch(link, options)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data && data.code == 200) {
           const span = buttonLike.querySelector("span");
           span.innerHTML = `${data.like} thích`;
@@ -91,7 +109,7 @@ if (listButtonFavorite.length > 0) {
         .then((res) => res.json())
         .then((data) => {
           if (data && data.code == 200) {
-            console.log(data);
+            // console.log(data);
             buttonFavorite.classList.toggle("active");
           }
         });
@@ -107,7 +125,7 @@ if (boxSearch) {
   const innerSugguest = boxSearch.querySelector(".inner-suggest");
   input.addEventListener("keyup", (e) => {
     const keyword = input.value;
-    console.log(keyword);
+    // console.log(keyword);
 
     const link = `/search/suggest?keyword=${keyword}`;
     fetch(link)

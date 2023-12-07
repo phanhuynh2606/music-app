@@ -6,7 +6,7 @@ export const convertToSlug = (text:string): string =>{
    console.log("1"+stringUnidecode);
 
    const slug: string = stringUnidecode.replace(/\s+/g, "-");
-   console.log(text);
-   console.log(slug);
+  //  console.log(text);
+  //  console.log(slug);
    return slug;
  }

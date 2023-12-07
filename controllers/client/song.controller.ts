@@ -131,3 +131,27 @@ export const favorite = async (req: Request, res: Response) => {
     typeFavorite: typeFavorite,
   });
 };
+
+// [PATCH] /songs/listen/:idSong
+export const listen = async (req: Request, res: Response) => {
+ const idSong: string = req.params.idSong;
+ const song = await Song.findOne({
+   _id: idSong,
+   status: "active",
+   deleted: false,
+ });
+  const newListen =  song.listen + 1;
+  await Song.updateOne(
+    {
+      _id: idSong,
+    },
+    {
+      listen: newListen,
+    }
+  );
+  res.send({
+    code: 200,
+    message: "Thành công",
+    listen: newListen,
+  });
+};
