@@ -1,101 +1,123 @@
 /* Header */
 .header {
-    background: #202020;
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-  }
-  
-  .header .inner-logo a {
-    font-size: 24px;
-    font-weight: 700;
-    color: #fff;
-  }
-  /* End Header */
-  
-  /* Body */
-  .body .sider {
-    width: 150px;
-    background: #323232;
-    color: #fff;
-    height: calc(100vh - 56px);
-    position: fixed;
-    top: 56px;
-    left: 0;
-  }
-  
-  .body .main {
-    margin: 15px;
-    position: relative;
-    left: 150px;
-    width: calc(100% - 180px);
-  }
-  /* End Body */
-  
-  /* Sider */
-  .sider .inner-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .sider .inner-menu ul li a {
-    color: #fff;
-    display: block;
-    padding: 6px 10px;
-    border-bottom: 1px solid #515151;
-  }
-  /* End Sider */
-  
-  /* Show Alert */
-  [show-alert] {
-    position: fixed;
-    top: 70px;
+  background: #202020;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header .inner-logo a {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+}
+/* End Header */
+
+/* Body */
+.body .sider {
+  width: 150px;
+  background: #323232;
+  color: #fff;
+  height: calc(100vh - 56px);
+  position: fixed;
+  top: 56px;
+  left: 0;
+}
+
+.body .main {
+  margin: 15px;
+  position: relative;
+  left: 150px;
+  width: calc(100% - 180px);
+}
+/* End Body */
+
+/* Sider */
+.sider .inner-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sider .inner-menu ul li a {
+  color: #fff;
+  display: block;
+  padding: 6px 10px;
+  border-bottom: 1px solid #515151;
+}
+/* End Sider */
+
+/* Show Alert */
+[show-alert] {
+  position: fixed;
+  top: 70px;
+  right: 15px;
+  z-index: 9999;
+}
+
+[show-alert].alert-hidden {
+  animation-name: alert-hidden;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes alert-hidden {
+  from {
     right: 15px;
-    z-index: 9999;
   }
-  
-  [show-alert].alert-hidden {
-    animation-name: alert-hidden;
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-  }
-  
-  @keyframes alert-hidden {
-    from {
-      right: 15px;
-    }
-    to {
-      right: -100%;
-      display: none;
-    }
-  }
-  
-  [show-alert] [close-alert] {
-    background: #ffffffc4;
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
-    text-align: center;
-    font-weight: 600;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  /* End Show Alert */
-  
-  /* Image Preview */
-  .image-preview {
-    width: 150px;
-    height: auto;
-    margin-top: 15px;
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 5px;
-  }
-  
-  .image-preview[src=""] {
+  to {
+    right: -100%;
     display: none;
   }
-  /* End Image Preview */
+}
+
+[show-alert] [close-alert] {
+  background: #ffffffc4;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* End Show Alert */
+
+/* Image Preview */
+.image-preview {
+  width: 150px;
+  height: auto;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.image-preview[src=""] {
+  display: none;
+}
+[upload-image] {
+  position: relative;
+}
+/* CSS cho nút close-image-preview */
+.close-preview{
+  display: inline-block;
+  margin-top: -10px;
+  padding: 0px 8px;
+  background-color: #382a2a; /* Màu nền của nút */
+  color: #fff; 
+  border: none; 
+  cursor: pointer; 
+  border-radius: 50%; 
+  position: absolute;
+  top: 80px;
+  left: 130px;
+}
+
+/* CSS để thay đổi giao diện nút khi di chuột qua */
+.close-preview:hover {
+  background-color: #cc0000;
+}
+/* End Image Preview */
