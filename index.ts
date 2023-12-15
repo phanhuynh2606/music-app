@@ -30,7 +30,7 @@ app.use(
 );
 // TinyMCE
 // App Local Variables
-app.locals.prefixAmin = systemConfig.prefixAmin;
+app.locals.prefixAdmin = systemConfig.prefixAmin;
 
 //Routes Admin
 adminRoute(app);
