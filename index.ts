@@ -25,10 +25,10 @@ app.use(bodyParse.urlencoded({extended : false}));
 
 app.use(methodOverride("_method"));
 
-app.use(express.static("public"));
+app.use(express.static(`${__dirname}/public`));
 
 // Setting PUG
-app.set("views", "./views");
+app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 
 // Flash
