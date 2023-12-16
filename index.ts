@@ -1,11 +1,16 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import dotenv from "dotenv";
 import * as database from "./config/database";
 import clientRoutes from "./routes/client/index.route";
 import moment from "moment";
 import adminRoute from "./routes/admin/index.route";
 import { systemConfig } from "./config/config";
+import bodyParse from "body-parser";
 import path from "path";
+import flash from "connect-flash";
+import session,{SessionOptions} from "express-session";
+import cookieParser from "cookie-parser";
+
 
 dotenv.config();
 
@@ -14,11 +19,25 @@ database.connect();
 const app: Express = express();
 const port: string | number = process.env.PORT || 3000;
 
+// Body-parse: Để lấy được data 
+app.use(bodyParse.urlencoded({extended : false}));
+
 app.use(express.static("public"));
 
 // Setting PUG
 app.set("views", "./views");
 app.set("view engine", "pug");
+
+// Flash
+// Thêm secret vào tùy chọn session
+// const sessionOptions: SessionOptions = {
+//   secret: 'HJSHDJSJJASHDJ',  // Thay 'your-secret-key' bằng giá trị thực tế của bạn
+//   cookie: { maxAge: 60000 }
+// };
+// app.use(cookieParser("HJSHDJSJJASHDJ"));
+// app.use(session(sessionOptions));
+// app.use(flash());
+// End Flash
 
 //Routes Client
 clientRoutes(app);

@@ -5,5 +5,6 @@
       "removeComments": true ,// xoá comments khi bien dịch sang file js
       "esModuleInterop": true, // Dùng được từ khoá import thay cho require
       "outDir": "dist",//Bien dich vao thu muc js
+      "baseUrl": "./"
    }
 }
