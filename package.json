@@ -4,9 +4,16 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.ts",
-    "build":  "tsc",
+    "build": "tsc && node copy-dir.js",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -16,6 +23,7 @@
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.3.1",
     "express-flash": "^0.0.2",
+    "fs-extra": "^11.2.0",
     "method-override": "^3.0.0",
     "moment": "^2.29.4",
     "mongoose": "^8.0.2",
@@ -34,6 +42,7 @@
     "@types/express-session": "^1.17.10",
     "@types/node": "^20.10.4",
     "nodemon": "^3.0.2",
+    "pre-commit": "^1.2.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
