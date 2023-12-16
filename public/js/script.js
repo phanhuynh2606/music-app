@@ -1,10 +1,13 @@
 
 // APlayer
 const aplayer = document.querySelector("#aplayer");
+const lyricsHTMLs =  document.querySelector(".song-detail [lyrics] .inner-text");
+var regexPattern = /\[\d{2}:\d{2}\.\d{2}\]/g;
+   lyricsHTMLs.innerText = lyricsHTMLs.innerText.replace(regexPattern, '');
+
 if (aplayer) {
   let dataSong = aplayer.getAttribute("data-song");
   dataSong = JSON.parse(dataSong);
-
   let dataSinger = aplayer.getAttribute("data-singer");
   dataSinger = JSON.parse(dataSinger);
   const ap = new APlayer({
