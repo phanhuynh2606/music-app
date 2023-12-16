@@ -10,7 +10,7 @@ if (aplayer) {
     container: aplayer,
     // listFolded: false,
     // listMaxHeight: 90,
-    // lrcType: 3,
+        lrcType: 1,
     //  fixed: true,
     audio: [
       {
@@ -19,6 +19,7 @@ if (aplayer) {
         url: dataSong.audio,
         cover: dataSong.avatar,
         theme: "#ebd0c2",
+        lrc: dataSong.lyrics
       },
       // {
       //   name: "id 072019 ",
