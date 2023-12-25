@@ -1,9 +1,10 @@
-
 // APlayer
 const aplayer = document.querySelector("#aplayer");
-const lyricsHTMLs =  document.querySelector(".song-detail [lyrics] .inner-text");
+const lyricsHTMLs = document.querySelector(".song-detail [lyrics] .inner-text");
 var regexPattern = /\[\d{2}:\d{2}\.\d{2}\]/g;
-   lyricsHTMLs.innerText = lyricsHTMLs.innerText.replace(regexPattern, '');
+if (lyricsHTMLs) {
+  lyricsHTMLs.innerText = lyricsHTMLs.innerText.replace(regexPattern, "");
+}
 
 if (aplayer) {
   let dataSong = aplayer.getAttribute("data-song");
@@ -14,7 +15,7 @@ if (aplayer) {
     container: aplayer,
     // listFolded: false,
     // listMaxHeight: 90,
-        lrcType: 1,
+    lrcType: 1,
     //  fixed: true,
     audio: [
       {
@@ -23,7 +24,7 @@ if (aplayer) {
         url: dataSong.audio,
         cover: dataSong.avatar,
         theme: "#ebd0c2",
-        lrc: dataSong.lyrics
+        lrc: dataSong.lyrics,
       },
       // {
       //   name: "id 072019 ",
@@ -44,7 +45,7 @@ if (aplayer) {
     elementAvatar.style.animationPlayState = "paused";
   });
 
-  ap.on('ended', function () {
+  ap.on("ended", function () {
     const link = `/songs/listen/${dataSong._id}`;
 
     const options = {
@@ -156,7 +157,7 @@ if (boxSearch) {
           const innerList = boxSearch.querySelector(".inner-list");
           innerList.innerHTML = htmls.join("");
           innerSugguest.classList.add("show");
-        } else{
+        } else {
           innerSugguest.classList.remove("remove");
         }
       });

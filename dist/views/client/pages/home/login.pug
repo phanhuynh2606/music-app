@@ -1,0 +1,41 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+include ../../mixins/moment.pug
+
+
+block main
+   .container.my-3
+      .row
+         .col-12
+         +box-head(pageTitle)
+
+      .row
+         .card.col-12.form-login
+               .card-header 
+                  h3(class="text-info") Đăng nhập
+
+               .card-body 
+                  small(id="emailHelp" class="form-text text-muted") 
+                     span Những thông tin có đánh dấu  
+                     span(class="required") * 
+                     span là bắt buộc nhập.
+                  form(action="", method="post") 
+                     div(class="form-group mb-4")
+                        label(for="account") 
+                              b Tên đăng nhập 
+                                 span(class="required") *
+                        input(type="text" name ="account" class="form-control" id="account" aria-describedby="account" required)
+                     div(class="form-group")
+                        label(for="password") 
+                              b Mật khẩu
+                                 span(class="required") *
+                        input(type="password" name="password" class="form-control" id="password" aria-describedby="account" required)
+
+                     button(type="submit" class="btn btn-primary") Đăng nhập
+                     
+                  hr
+
+                  h5.text-right
+                     a(href="" class="") Quên mật khẩu 
+                     a(href="/register" class="") | Đăng ký ngay 
+                  
